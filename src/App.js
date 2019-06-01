@@ -1,24 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+
+import "./App.css";
+import Toolbar from "./components/Toolbar";
+import Sidedraw from "./components/Sidedraw";
+import Backdrop from "./components/Backdrop";
+import axios from "axios";
 
 function App() {
+  
+  const [toggleSide, setToggleSide] = useState(false);
+  const [proMatch, setproMatch] = useState([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const result = await axios("https://api.opendota.com/api/proMatches");
+      setproMatch(result.data);
+    };
+
+    fetch();
+  }, []);
+
+  const toggleButtonHandle = () => {
+    setToggleSide(() => {
+      return setToggleSide(!toggleSide);
+    });
+  };
+
+  const backDropClick = () => {
+    setToggleSide(!toggleSide);
+  };
+
+  let backDrop;
+
+  if (toggleSide) {
+    backDrop = <Backdrop backClick={backDropClick} />;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: "100%" }}>
+      <Toolbar toggler={toggleButtonHandle} />
+      <Sidedraw show={toggleSide} proMatchClick={proMatch} />
+      {backDrop}
+      <main style={{ marginTop: "64px" }} />
     </div>
   );
 }

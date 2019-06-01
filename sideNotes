@@ -1,0 +1,60 @@
+
+  const [match, setMatch] = useState({});
+  //const [search, setSearch] = useState("");
+  //const [query, setQuery] = useState(4749875544);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const result = await axios(
+        `https://api.opendota.com/api/matches/4749875544`
+      );
+
+      setMatch(result.data);
+    };
+
+    fetchData();
+  }, [query]);
+
+  const searchInput = e => {
+    setSearch(e.target.value);
+  };
+
+  const getSearch = e => {
+    e.preventDefault();
+    setQuery(search);
+  }; 
+
+   const [matchesCall, setMatchesCall] = useState("");
+  const [pmatches, setPmatches] = useState("");
+  const [players, seplayers] = useState("");
+  const [teams, setTeams] = useState("");
+
+  useEffect(() => {
+    const fetch = async () => {
+      const result = await axios("https://api.opendota.com/api/proPlayers");
+      setPmatches(result.data);
+    };
+    fetch();
+    console.log(matchesCall)
+  }, );
+
+
+const Sidedraw = props => {
+  let drawClass = "sideDraw";
+  if (props.show) {
+    drawClass = "sideDraw open";
+  }
+  function clickHandler(evt) {
+    console.log(evt.target)
+  }
+  return (
+    <nav className={drawClass}>
+      <ul>
+        <li className="matches" onClick={clickHandler}>Pro matches</li>
+        <li className="matches" onClick={clickHandler}>Public mathes</li>
+        <li className="matches" onClick={clickHandler}>Players</li>
+        <li className="matches" onClick={clickHandler}>Teams</li>
+      </ul>
+    </nav>
+  );
+};

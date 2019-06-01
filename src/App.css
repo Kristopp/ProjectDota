@@ -1,33 +1,116 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.toolbar {
+  position: fixed;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgb(0, 0, 0);
+  height: 56px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.toolbar_navigation {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 1rem;
+}
+.toolbar_logo {
+  width: 50px;
+  height: 50px;
+  margin-left: 1rem;
+  margin-top: 0.3rem;
+}
+.toolbar_logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+.toolbar_navigation-items ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.toggle-button {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  height: 22px;
+  width: 30;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.toggle-button:focus {
+  outline: none;
+}
+.toggle-button_line {
+  width: 30px;
+  height: 2px;
+  background: white;
+}
+.sideDraw {
+  height: 100%;
+  background: white;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 45%;
+  max-width: 300px;
+  z-index: 200;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  
+}
+.sideDraw.open { 
+  transform: translateX(0);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+.sideDraw ul {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  z-index: 201;
 }
-
-.App-link {
-  color: #61dafb;
+.sideDraw li {
+  margin: 0.5rem 0;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sideDraw a:hover,
+.sideDraw a:active {
+  color: #e65c00;
+}
+body {
+  background: url(img/backGround.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+.img { 
+  display: block;
+  cursor: pointer;
+  max-width: 100%;
+} 
+.matches { 
+  max-width: 100px;
+  cursor: pointer;
+}
+.buttonSide { 
+  flex-direction: row;
+  background: transparent;
+  border: none !important;
 }
