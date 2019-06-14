@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Provider } from "react-redux";
+import axios from "axios";
 
 import "./App.css";
+import Store from './Store'
 import Toolbar from "./components/Toolbar";
 import Sidedraw from "./components/Sidedraw";
 import Backdrop from "./components/Backdrop";
-import axios from "axios";
 
 function App() {
-  
   const [toggleSide, setToggleSide] = useState(false);
   const [proMatch, setproMatch] = useState([]);
 
@@ -36,12 +37,14 @@ function App() {
     backDrop = <Backdrop backClick={backDropClick} />;
   }
   return (
-    <div style={{ height: "100%" }}>
-      <Toolbar toggler={toggleButtonHandle} />
-      <Sidedraw show={toggleSide} proMatchClick={proMatch} />
-      {backDrop}
-      <main style={{ marginTop: "64px" }} />
-    </div>
+    <Provider store={Store}>
+      <div style={{ height: "100%" }}>
+        <Toolbar toggler={toggleButtonHandle} />
+        <Sidedraw show={toggleSide} proMatchClick={proMatch} />
+        {backDrop}
+        <main style={{ marginTop: "64px" }} />
+      </div>
+    </Provider>
   );
 }
 

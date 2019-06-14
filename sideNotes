@@ -58,3 +58,51 @@ const Sidedraw = props => {
     </nav>
   );
 };
+
+   <li>
+          <span>{props.id}</span>
+        </li
+
+        
+   <ul className="listStyle">
+      <Container className="listCont">
+        <div className="row">
+          <div className="col-sm" />
+         
+          <div className="col-sm" />
+          {`Radiant score ${props.radiantScore}`}
+          <div />
+        </div>
+      </Container>
+    </ul>
+
+    .col-md-3.duration { 
+  margin-left: auto;
+}
+.col-md-2.id {
+  padding-left: auto;
+  margin-top: 5px;
+}
+.col-md-3.radiantScore {
+  padding-left: auto;
+}
+.col-md-2.Winner {
+  padding-left: 40px;
+}
+.align-middle.radiant { 
+  margin-left: 100px
+} 
+
+export const fetchPosts = () => { 
+    return (dispatch) => { 
+        return axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then(response => { 
+            dispatch({ 
+                type: FETCH_POSTS,
+                payload: response
+            })
+        })
+
+    }
+}
+
